@@ -8,8 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@protocol CityDelegate<NSObject>
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
+@end
+
+@interface ViewController : UIViewController <UITableViewDelegate, UITableViewDelegate> {
+    NSMutableArray *curTempArray;
+    NSMutableArray *maxTempArray;
+    NSMutableArray *minTempArray;
+    NSMutableArray *dayArray;
+    NSArray *cityListArray;
+}
+@property(nonatomic,weak)IBOutlet UILabel *curLbl;
+@property(weak,nonatomic) NSString* citySelect;
+@property (weak, nonatomic) id<CityDelegate> delegate;
+@property (nonatomic, strong) NSArray *items;
+
+@property (nonatomic, strong) NSString *cityName;
 
 
 @end
-
